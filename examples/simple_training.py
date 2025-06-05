@@ -33,7 +33,7 @@ def main(args):
     
     # Process dataset to use only the 'input' column
     def process_dataset(examples):
-        return {"text": examples["text"]}
+        return {"text": examples["prompt"]}
     
     dataset = dataset.map(process_dataset, batched=True)
     
@@ -120,8 +120,8 @@ def main(args):
     
     # Generate some example text
     prompts = [
-        "Liam Thompson is",
-        "Ana Sofia Herrera is",
+        "Imagine you are an experienced",
+        "Using",
     ]
     
     print("\nGenerating example texts:")
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a NoBackdrop model")
     
     # Data arguments
-    parser.add_argument("--dataset", type=str, default="cognitivecomputations/china-refusals", help="Dataset to use")
+    parser.add_argument("--dataset", type=str, default="fka/awesome-chatgpt-prompts", help="Dataset to use")
     parser.add_argument("--tokenizer_name", type=str, default="gpt2", help="Tokenizer name")
     parser.add_argument("--max_samples", type=int, default=1000, help="Maximum number of samples to use")
     
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     parser.add_argument("--learning_rate", type=float, default=1e-5, help="Learning rate")
     parser.add_argument("--weight_decay", type=float, default=0.01, help="Weight decay")
     parser.add_argument("--max_grad_norm", type=float, default=1.0, help="Maximum gradient norm")
-    parser.add_argument("--num_epochs", type=int, default=50, help="Number of epochs")
+    parser.add_argument("--num_epochs", type=int, default=20, help="Number of epochs")
     
     # Logging and saving arguments
     parser.add_argument("--log_interval", type=int, default=10, help="Logging interval")
